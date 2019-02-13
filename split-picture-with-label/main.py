@@ -12,7 +12,7 @@ def split_images(img, picture_info,  width , height):
         p_data = points['@points']
         if points['@label'] not in split_images:
             split_images[points['@label']] = []
-        p_h_data, p_w_data = map(int, map(float,p_data.split(",")))
+        p_w_data, p_h_data = map(int, map(float,p_data.split(",")))
         data = img[p_h_data : p_h_data + height  , p_w_data :  p_w_data + width ]
         split_images[points['@label']].append(data)
     return split_images
@@ -30,7 +30,7 @@ def save_images(images , output_dir, prefix_name):
         if not os.path.exists(dest_dir):
             os.mkdir(dest_dir)
         for i, val in enumerate(v):
-            dest_img = os.path.join(dest_dir, prefix_name + "_"  + str(i).split(".")[0] + ".jpg")
+            dest_img = os.path.join(dest_dir, prefix_name.split(".")[0] + "_"  + str(i) + ".jpg")
             cv2.imwrite(dest_img, val)
 
 if __name__ == "__main__":

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <task>
+      <id>33</id>
+      <name>fire</name>
+      <size>3</size>
+      <mode>annotation</mode>
+      <overlap>0</overlap>
+      <bugtracker></bugtracker>
+      <flipped>False</flipped>
+      <created>2019-02-13 09:21:10.222639+03:00</created>
+      <updated>2019-02-13 09:44:09.062646+03:00</updated>
+      <source>3 images: 54321_54321_20181203095349_20181203095603_802403.jpg, 54321_54321_20181203095603_20181203095826_807551.jpg, ...</source>
+      <labels>
+        <label>
+          <name>cross</name>
+          <attributes>
+            <attribute>@select=status:none,min,mid,max</attribute>
+          </attributes>
+        </label>
+        <label>
+          <name>other</name>
+          <attributes>
+          </attributes>
+        </label>
+      </labels>
+      <segments>
+        <segment>
+          <id>27</id>
+          <start>0</start>
+          <stop>2</stop>
+          <url>http://localhost:8081/?id=27</url>
+        </segment>
+      </segments>
+      <owner>
+        <username>admin</username>
+        <email>hao.xie@transwarp.io</email>
+      </owner>
+    </task>
+    <dumped>2019-02-13 09:44:11.125929+03:00</dumped>
+  </meta>
+  <image id="0" name="54321_54321_20181203095349_20181203095603_802403.jpg" width="1280" height="960">
+    <points label="other" points="244.89,775.42" occluded="0">
+    </points>
+    <points label="cross" points="380.56,464.30" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="393.43,446.76" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="420.33,463.14" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="395.77,484.19" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="other" points="356.00,663.14" occluded="0">
+    </points>
+    <points label="other" points="605.12,587.11" occluded="0">
+    </points>
+    <points label="other" points="726.76,591.79" occluded="0">
+    </points>
+    <points label="other" points="867.11,595.30" occluded="0">
+    </points>
+    <points label="other" points="43.72,670.15" occluded="0">
+    </points>
+    <points label="other" points="763.02,356.70" occluded="0">
+    </points>
+    <points label="other" points="600.45,801.15" occluded="0">
+    </points>
+    <points label="other" points="986.41,778.93" occluded="0">
+    </points>
+    <points label="other" points="432.02,790.62" occluded="0">
+    </points>
+    <points label="other" points="235.53,468.98" occluded="0">
+    </points>
+    <points label="other" points="879.98,354.36" occluded="0">
+    </points>
+    <points label="other" points="194.60,354.36" occluded="0">
+    </points>
+    <points label="other" points="105.71,471.32" occluded="0">
+    </points>
+    <points label="other" points="497.52,654.95" occluded="0">
+    </points>
+    <points label="other" points="871.79,463.14" occluded="0">
+    </points>
+    <points label="other" points="209.80,671.32" occluded="0">
+    </points>
+    <points label="other" points="333.78,854.95" occluded="0">
+    </points>
+    <points label="other" points="768.87,817.52" occluded="0">
+    </points>
+    <points label="other" points="502.20,587.11" occluded="0">
+    </points>
+    <points label="other" points="1060.10,602.32" occluded="0">
+    </points>
+    <points label="other" points="822.67,690.04" occluded="0">
+    </points>
+    <points label="other" points="1125.59,513.43" occluded="0">
+    </points>
+    <points label="other" points="635.54,672.49" occluded="0">
+    </points>
+    <points label="other" points="334.95,354.36" occluded="0">
+    </points>
+    <points label="other" points="101.03,798.81" occluded="0">
+    </points>
+    <points label="other" points="756.00,464.30" occluded="0">
+    </points>
+    <points label="other" points="357.17,585.94" occluded="0">
+    </points>
+    <points label="other" points="186.41,587.11" occluded="0">
+    </points>
+    <points label="other" points="582.90,463.14" occluded="0">
+    </points>
+    <points label="other" points="81.15,350.85" occluded="0">
+    </points>
+    <points label="cross" points="402.79,466.64" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+  </image>
+  <image id="1" name="54321_54321_20181203095603_20181203095826_807551.jpg" width="1280" height="960">
+    <points label="cross" points="468.28,485.36" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="other" points="213.31,460.80" occluded="0">
+    </points>
+    <points label="other" points="115.06,463.14" occluded="0">
+    </points>
+    <points label="cross" points="495.18,479.51" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="other" points="547.81,461.97" occluded="0">
+    </points>
+    <points label="other" points="884.66,468.98" occluded="0">
+    </points>
+    <points label="other" points="595.77,457.29" occluded="0">
+    </points>
+    <points label="other" points="806.29,463.14" occluded="0">
+    </points>
+    <points label="cross" points="449.57,461.97" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="other" points="660.10,459.63" occluded="0">
+    </points>
+    <points label="cross" points="470.62,449.10" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="495.18,459.63" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="other" points="740.80,460.80" occluded="0">
+    </points>
+    <points label="other" points="1157.17,520.45" occluded="0">
+    </points>
+    <points label="other" points="317.40,459.63" occluded="0">
+    </points>
+    <points label="other" points="405.12,460.80" occluded="0">
+    </points>
+    <points label="cross" points="477.64,470.15" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="other" points="972.38,481.85" occluded="0">
+    </points>
+    <points label="other" points="1067.12,492.38" occluded="0">
+    </points>
+  </image>
+  <image id="2" name="54321_54321_20181203095826_20181203100032_813307.jpg" width="1280" height="960">
+    <points label="other" points="932.61,474.83" occluded="0">
+    </points>
+    <points label="other" points="1033.20,474.83" occluded="0">
+    </points>
+    <points label="cross" points="556.00,469.00" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="580.56,474.83" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="532.60,467.80" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="572.40,453.80" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="cross" points="558.34,485.36" occluded="0">
+      <attribute name="status">none</attribute>
+    </points>
+    <points label="other" points="217.99,470.15" occluded="0">
+    </points>
+    <points label="other" points="841.38,474.83" occluded="0">
+    </points>
+    <points label="other" points="664.77,467.81" occluded="0">
+    </points>
+    <points label="other" points="97.52,481.85" occluded="0">
+    </points>
+    <points label="other" points="432.02,464.30" occluded="0">
+    </points>
+    <points label="other" points="752.49,465.47" occluded="0">
+    </points>
+    <points label="other" points="1136.12,497.05" occluded="0">
+    </points>
+    <points label="other" points="1227.35,499.39" occluded="0">
+    </points>
+    <points label="other" points="330.27,464.30" occluded="0">
+    </points>
+  </image>
+</annotations>

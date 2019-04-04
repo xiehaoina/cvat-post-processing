@@ -12,10 +12,12 @@ from sklearn.model_selection import cross_val_score
 import pickle
 from joblib import dump, load
 
-scaling_size = 5
+window_width = 240
+window_heigh = 160
+scaling_size = 2
 def get_hog(image,  locations = [],  winStride = ()):
     winSize = (image.shape[1], image.shape[0])
-    blockSize = (8,8)
+    blockSize = (16,16)
     blockStride = (8,8)
     cellSize = (8,8)
     nbins = 9
@@ -36,10 +38,10 @@ def get_hog(image,  locations = [],  winStride = ()):
     return [x[0] for x in hist]
 
 def get_cross_image(gray_img, sk_model,  x_stride, y_stride , x_size , y_size):
-    width = gray_img.shape[1] / scaling_size
-    heigh = gray_img.shape[0] / scaling_size
+    width = int(gray_img.shape[1] / scaling_size)
+    heigh = int(gray_img.shape[0] / scaling_size)
     image = cv2.resize(gray_img, (width, heigh), interpolation=cv2.INTER_AREA)
-    features = []
+    cross_num = 0
     for x in range(0, image.shape[1] - x_stride + 1, x_stride):
         for y in range(0, image.shape[0] - y_stride + 1, y_stride):
             sub_img = image[y: y + y_size, x: x + x_size]
@@ -48,17 +50,15 @@ def get_cross_image(gray_img, sk_model,  x_stride, y_stride , x_size , y_size):
                 feature = get_hog(sub_img)
                 result = sk_model.predict([feature])
                 proba = sk_model.predict_proba([feature])
-                if result[0] == 1:
-                    print("skip")
-                    #cv2.imwrite("1_" + str(x) + "_" + str(y) + "_" + str(proba[0][1]) + "_" + str(time.time()) + ".jpg" ,scale_sub_img)
-                else:
-                    cv2.imwrite("0_" + str(x) + "_" + str(y) + "_" + str(proba[0][0]) + "_" + str(time.time()) +".jpg" ,scale_sub_img)
+                if result[0] == 0:
+                    cross_num += 1
+                    cv2.imwrite("0_" + str(x) + "_" + str(y) + "_" + str(proba[0][0]) + "_" + str(time.time()) +".jpg"
+                                , scale_sub_img)
             else:
-                print(x,y)
-                print(sub_img.shape)
-                print(width, heigh)
-    #print(len(features))
-    return features
+                cv2.imwrite("unshaped_" + str(x) + "_" + str(y) + "_" + str(proba[0][0]) + "_" + str(time.time()) + ".jpg"
+                            , scale_sub_img)
+
+    return cross_num
 
 def resize_dataset(dataset, width , height):
     for i in range(0, len(dataset.data)):
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
     dataset = dataset.ImgDataSet(options.input)
 
-    dataset = resize_dataset(dataset, 480 / scaling_size, 320 / scaling_size)
+    dataset = resize_dataset(dataset, int(window_width / scaling_size), int(window_heigh / scaling_size))
     dataset = transform_hog_features(dataset)
     clf = train_RF_mode(dataset.data, dataset.target)
     dump(clf,'od.joblib')
@@ -107,12 +107,31 @@ if __name__ == "__main__":
 
     #clf = train_RF_mode([[0, 0], [1.1, 1.21]],[0, 1])
     scores = cross_val_score(clf, dataset.data, dataset.target, cv=5)
-    for file in os.listdir("test"):
-        img_path = os.path.join("test",file)
-        test_img = cv2.imread(img_path)
-        gray_img = cv2.cvtColor(test_img, cv2.COLOR_BGR2GRAY)
-        #small_img = cv2.resize(gray_img, (gray_img.shape[1] / 10,gray_img.shape[0] / 10), interpolation=cv2.INTER_AREA)
-        get_cross_image(gray_img, clf, 8, 8 , 480 / scaling_size, 320 / scaling_size)
+
+    total_img_num = 0
+    multi_recognized_img_num = 0
+    recognized_img_num = 0
+    unrecognized_img_num = 0
+    try:
+
+        for file in os.listdir("test"):
+            total_img_num += 1
+            img_path = os.path.join("test",file)
+            test_img = cv2.imread(img_path)
+            gray_img = cv2.cvtColor(test_img, cv2.COLOR_BGR2GRAY)
+            #small_img = cv2.resize(gray_img, (gray_img.shape[1] / 10,gray_img.shape[0] / 10), interpolation=cv2.INTER_AREA)
+            cross_num = get_cross_image(gray_img, clf, 8, 8 , int(window_width / scaling_size), int(window_heigh / scaling_size) )
+            if cross_num == 0:
+                unrecognized_img_num += 1
+            elif cross_num == 1:
+                recognized_img_num += 1
+            elif cross_num >= 2:
+                multi_recognized_img_num += 1
+    except Exception:
+        print("Error: stop processing image detection")
+
+    print("total files: {0}, unrecognized files: {1} , recognized  files: {2} , multi_recognized files {3}"
+          , total_img_num, unrecognized_img_num, recognized_img_num, multi_recognized_img_num)
 
 
     '''

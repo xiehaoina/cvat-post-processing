@@ -7,7 +7,7 @@ import numpy as np
 
 def split_images(img, picture_info,  width , height):
     split_images = {}
-    img = np.pad(img, ((height / 2, height / 2), (width / 2, width / 2), (0,0)), 'edge')
+    img = np.pad(img, ((int(height / 2), int(height / 2)), (int(width / 2),int(width / 2)), (0,0)), 'edge')
     if isinstance(picture_info,dict):
         picture_info = [picture_info]
 
@@ -74,7 +74,7 @@ if __name__ == "__main__":
         action="store",
         dest="width",
         type="int",
-        default="480",
+        default="240",
         help="specify the width of splited picture",
         metavar = "WIDTH"
     )
@@ -84,7 +84,7 @@ if __name__ == "__main__":
         action="store",
         dest="height",
         type="int",
-        default="320",
+        default="160",
         help="specify the height of splited picture",
         metavar = "HEIGHT"
     )

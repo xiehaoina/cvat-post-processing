@@ -5,7 +5,7 @@ import base64
 import os
 
 if __name__ == '__main__':
-    dir = "../hog-based-object-detection/test"
+    dir = "../../hog-based-object-detection/test"
     for img in os.listdir(dir):
         if not img.endswith("jpeg"):
             continue
@@ -14,7 +14,7 @@ if __name__ == '__main__':
         print(file)
         with open(file,"rb" ) as f:
             base64_img = base64.b64encode(f.read())
-            url = 'http://172.16.202.90:10001'
+            url = 'http://localhost:10001'
             params = {
                 "client_id": "123",
                 "params": [

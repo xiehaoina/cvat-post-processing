@@ -94,6 +94,7 @@ if __name__ == "__main__":
     if not os.path.isfile(options.config):
         print("{0} is not file".format(options.config))
         exit(0)
+
     with open(options.config, 'r') as f:
         cvat_results = parse_cvat(f.read())
 

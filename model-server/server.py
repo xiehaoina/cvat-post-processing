@@ -1,17 +1,15 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-
 from joblib import load
-import numpy as np
 import cv2
-
 import time
+import sys
+
+sys.path.append("..")
 from common import utils
 
 app = Flask(__name__)
 api = Api(app)
-
-
 
 class predict(Resource):
     w_search_range = 32
@@ -41,11 +39,7 @@ class predict(Resource):
         return utils.gen_roi_pos(predict.pre_pos, predict.w_search_range, predict.h_search_range, stride)
 
 
-    def chunks(self, l, n):
-        # For item i in a range that is a length of l,
-        for i in range(0, len(l), n):
-            # Create an index range for l of n items:
-            yield l[i:i + n]
+
 
     def get_rect(self, image_stream):
         result = {"objects":[]}
@@ -62,14 +56,14 @@ class predict(Resource):
 
         hog_features = utils.get_hog(resized_img, locations=locations,
                                     winSize=(self.roi_w_len, self.roi_h_len))
-        hog_feature_list = list(self.chunks(hog_features, int(len(hog_features) / len(locations))))
+        hog_feature_list = list(utils.chunks(hog_features, int(len(hog_features) / len(locations))))
 
-        pre_results = predict.clf.predict(hog_feature_list)
+        predict_results = predict.clf.predict(hog_feature_list)
 
         predict.captured = False
 
-        for i in range(0,len(pre_results)):
-            if pre_results[i] == 0:
+        for i in range(0,len(predict_results)):
+            if predict_results[i] == 0:
                 u_h = locations[i][1]
                 d_h = u_h + self.roi_h_len
                 l_w = locations[i][0]
@@ -103,5 +97,4 @@ class predict(Resource):
 api.add_resource(predict,"/")
 
 if __name__ == '__main__':
-
-    app.run(host='localhost', port=10001)
+    app.run(host='localhost', port=8888)
